@@ -58,6 +58,9 @@
               </v-container>
             </v-card-text>
             <v-card-actions>
+              <v-btn icon @click="helpDialog = !helpDialog">
+                <v-icon small>mdi-help</v-icon>
+              </v-btn>
               <v-spacer></v-spacer>
               <v-btn text @click="cancelDialog()">Cancel</v-btn>
               <v-btn
@@ -72,16 +75,20 @@
         </v-dialog>
       </v-card-actions>
     </v-card>
+    <GridHelp v-model="helpDialog" />
   </div>
 </template>
 
 <script>
+import GridHelp from "@/components/GridHelp";
+
 export default {
-  components: {},
+  components: { GridHelp },
   props: [],
   data() {
     return {
       dialog: false,
+      helpDialog: false,
       formValid: false,
       latLonLen: 5,
       altLen: 3,
@@ -123,8 +130,7 @@ export default {
       if (
         this.newLatitude.length < 3 ||
         this.newLongitude.length < 3 ||
-        this.newAltitude.length === 0 
-
+        this.newAltitude.length === 0
       ) {
         this.formValid = false;
         return false;

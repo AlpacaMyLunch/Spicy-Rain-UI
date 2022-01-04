@@ -1,0 +1,171 @@
+<template>
+  <v-dialog v-model="show" max-width="500px" persistent>
+    <v-card>
+      <v-card-title>
+        <span class="text-h5">New Target</span>
+      </v-card-title>
+      <v-card-text>
+        <v-container>
+          <v-row>
+            <v-col cols="8" sm="8" md="8">
+              <v-text-field
+                label="Title"
+                v-model="newTitle"
+                :rules="[rules.required]"
+                dense
+                maxlength="30"
+                counter
+                v-on:keyup="validateForm"
+              ></v-text-field> </v-col
+            ><v-spacer></v-spacer>
+          </v-row>
+          <v-row>
+            <v-col cols="12" sm="6" md="4">
+              <v-text-field
+                label="Latitude"
+                v-model="newLatitude"
+                :rules="[rules.required, rules.minFour]"
+                dense
+                counter
+                :maxlength="latLonLen"
+                v-on:keyup="onlyNumbers"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6" md="4">
+              <v-text-field
+                label="Longitude"
+                v-model="newLongitude"
+                :rules="[rules.required, rules.minFour]"
+                dense
+                counter
+                :maxlength="latLonLen"
+                v-on:keyup="onlyNumbers"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6" md="4">
+              <v-text-field
+                label="Altitude"
+                v-model="newAltitude"
+                :rules="[rules.required]"
+                dense
+                counter
+                :maxlength="altLen"
+                v-on:keyup="onlyNumbers"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn text @click="cancelDialog()">Cancel</v-btn>
+        <v-btn color="success" text @click="saveDialog()" :disabled="!formValid"
+          >Save</v-btn
+        >
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+
+<script>
+export default {
+  props: {
+    value: Boolean,
+  },
+  data() {
+    return {
+      latLonLen: 5,
+      altLen: 3,
+      newLatitude: "",
+      newLongitude: "",
+      newAltitude: "",
+      newTitle: "",
+      formValid: false,
+      rules: {
+        required: (v) => !!v || "Required",
+        minFour: (v) => v.length > 2 || "Minimum 3 digits",
+      },
+    };
+  },
+  created: function () {
+    this.validateForm();
+  },
+  methods: {
+    cancelDialog() {
+      this.newAltitude = "";
+      this.newLongitude = "";
+      this.newLatitude = "";
+      this.newTitle = "";
+      this.show = false;
+    },
+    saveDialog() {
+      this.onlyNumbers();
+      let tgt = {
+        latitude: this.newLatitude,
+        longitude: this.newLongitude,
+        altitude: this.newAltitude,
+        title: this.newTitle,
+      };
+      this.$emit("new", tgt);
+      this.newAltitude = "";
+      this.newLatitude = "";
+      this.newLongitude = "";
+      this.newTitle = "";
+      this.show = false;
+    },
+    validateForm() {
+      if (this.newTitle.length === 0) {
+        this.formValid = false;
+        return false;
+      }
+      if (
+        this.newLatitude.length < 3 ||
+        this.newLongitude.length < 3 ||
+        this.newAltitude.length === 0
+      ) {
+        this.formValid = false;
+        return false;
+      }
+
+      if (
+        this.latitude == this.newLatitude &&
+        this.longitude == this.newLongitude &&
+        this.altitude == this.newAltitude
+      ) {
+        this.formValid = false;
+        return false;
+      }
+
+      this.formValid = true;
+      return true;
+    },
+    onlyNumbers() {
+      this.newLatitude = this.newLatitude.replace(/\D/g, "");
+      this.newLongitude = this.newLongitude.replace(/\D/g, "");
+      try {
+        if (this.newAltitude != "" && this.newAltitude != "-") {
+          try {
+            this.newAltitude = parseInt(this.newAltitude);
+          } catch (err) {
+            this.newAltitude = "0";
+          }
+        }
+      } catch (err) {
+        this.validateForm();
+        return;
+      }
+      this.validateForm();
+    },
+  },
+  computed: {
+    show: {
+      get() {
+        return this.value;
+      },
+      set(value) {
+        this.$emit("input", value);
+      },
+    },
+  },
+};
+</script>

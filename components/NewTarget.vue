@@ -82,7 +82,7 @@ export default {
       newTitle: "",
       formValid: false,
       rules: {
-        required: (v) => !!v || "Required",
+        required: (v) => !!v.toString() || "Required",
         minFour: (v) => v.length > 2 || "Minimum 3 digits",
       },
     };

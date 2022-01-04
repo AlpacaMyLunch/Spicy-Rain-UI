@@ -116,7 +116,7 @@ export default {
     firingData: {},
     formValid: false,
     rules: {
-      required: (value) => !!value || "Required.",
+      required: (value) => !!value.toString() || "Required.",
     },
   }),
 };

@@ -128,5 +128,6 @@ export default {
     font-size: 2em;
     /* text-align: center; */
     padding-top: 5px;
+    padding-bottom: 5px;
 }
 </style>

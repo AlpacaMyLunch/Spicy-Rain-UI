@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     async deleteTarget() {
-      console.log("clicked delete on id " + this.targetData.id);
       this.deleteDialog = false;
       this.$emit("delete", this.targetData.id);
     },

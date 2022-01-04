@@ -115,10 +115,10 @@ export default {
 
       const fp = this.$refs.fpDetails;
 
-      const minCoordLat = parseInt(fp.latitude) - 2000;
-      const maxCoordLat = parseInt(fp.latitude) + 2000;
-      const minCoordLon = parseInt(fp.longitude) - 2000;
-      const maxCoordLon = parseInt(fp.longitude) + 2000;
+      const minCoordLat = parseInt(fp.latitude) - 3000;
+      const maxCoordLat = parseInt(fp.latitude) + 3000;
+      const minCoordLon = parseInt(fp.longitude) - 3000;
+      const maxCoordLon = parseInt(fp.longitude) + 3000;
       const minAlt = -50;
       const maxAlt = 130;
       for (let i = 0; i < 5; i++) {

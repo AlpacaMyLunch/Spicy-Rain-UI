@@ -18,10 +18,7 @@
             Line of Sight
             <v-icon>mdi-binoculars</v-icon>
           </v-tab>
-          <v-tab href="#map">
-            Altis Map
-            <v-icon>mdi-map</v-icon>
-          </v-tab>
+
         </v-tabs>
 
 
@@ -44,12 +41,7 @@
             </v-container>
           </v-tab-item>
 
-          <!-- Tab 3 - Map -->
-          <v-tab-item key="map" id="map">
-            <v-container class="py-6">
-              <Map />
-            </v-container>
-          </v-tab-item>
+
         </v-tabs-items>
 
 
@@ -59,15 +51,14 @@
 <script>
 import LineOfSight from "@/components/LineOfSight";
 import TargetList from "@/components/TargetList";
-import Map from "@/components/Map";
 
 export default {
   name: "FATDS",
 
   components: {
     LineOfSight,
-    TargetList,
-    Map
+    TargetList
+    
   },
 
   methods: {

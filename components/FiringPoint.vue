@@ -92,8 +92,8 @@ export default {
       newLongitude: "10000",
       newAltitude: "0",
       rules: {
-        required: (v) => !!v || "Required",
-        minFour: (v) => v.length > 3 || "Minimum 4 digits",
+        required: (v) => !!v.toString() || "Required",
+        minFour: (v) => v.length > 2 || "Minimum 3 digits",
       },
     };
   },

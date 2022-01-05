@@ -18,6 +18,10 @@
             Line of Sight
             <v-icon>mdi-binoculars</v-icon>
           </v-tab>
+          <v-tab href="#help">
+            Help
+            <v-icon>mdi-help</v-icon>
+          </v-tab>
 
         </v-tabs>
 
@@ -38,6 +42,18 @@
               <LineOfSight /> 
               <v-spacer></v-spacer>
               </v-row>
+            </v-container>
+          </v-tab-item>
+
+
+          <!-- Tab 3 - Help -->
+          <v-tab-item key="help" id="help">
+            <v-container class="py-6">
+            <v-row>
+            <p>More help documentation coming soon.</p>
+            </v-row><v-row>
+            <p>The Altis map can be found here: <a href="https://spicyrain.fun/altis" target="_blank">Altis</a></p>
+            </v-row>
             </v-container>
           </v-tab-item>
 

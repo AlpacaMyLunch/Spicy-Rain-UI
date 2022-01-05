@@ -7,7 +7,7 @@
         <div>
             <p>The Altis map calculator can be found here:</p>
             <a href="https://spicyrain.fun/altis" target="_blank">https://spicyrain.fun/altis
-            <v-img src="/altis.PNG"  max-width="500px"></v-img></a>
+            <v-img src="images/altis.PNG"  max-width="500px"></v-img></a>
             </div>
         </v-row>
         

@@ -50,9 +50,9 @@
           <v-tab-item key="help" id="help">
             <v-container class="py-6">
             <v-row>
-            <p>More help documentation coming soon.</p>
-            </v-row><v-row>
-            <p>The Altis map can be found here: <a href="https://spicyrain.fun/altis" target="_blank">Altis</a></p>
+              <v-spacer></v-spacer>
+                <Help />
+              <v-spacer></v-spacer>
             </v-row>
             </v-container>
           </v-tab-item>
@@ -67,13 +67,15 @@
 <script>
 import LineOfSight from "@/components/LineOfSight";
 import TargetList from "@/components/TargetList";
+import Help from "@/components/Help";
 
 export default {
   name: "FATDS",
 
   components: {
     LineOfSight,
-    TargetList
+    TargetList,
+    Help
     
   },
 

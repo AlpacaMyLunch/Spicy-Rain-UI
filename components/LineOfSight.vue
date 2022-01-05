@@ -64,7 +64,7 @@
 import FATDSService from "@/functions/api";
 
 export default {
-  name: "Line of Sight",
+  name: "LineofSight",
 
   components: {},
 

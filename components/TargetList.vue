@@ -25,7 +25,7 @@
 
       <!-- TEST BUTTON -->
 
-      <v-btn text color="info" v-on:click="addTestTargets">TEST</v-btn>
+      <!-- <v-btn text color="info" v-on:click="addTestTargets">TEST</v-btn> -->
       <!-- /END TEST BUTTON -->
     </v-row>
 

@@ -46,7 +46,7 @@
                 <em>Equation</em>
                 <div class="fe-los">{{ firingData.equation.elevation }}°</div>
                 ~ {{ firingData.equation.flight_time }} seconds<br>
-                {{ firingData.equation.velocity }} m/s (average)
+                {{ firingData.equation.velocity }} m/s (avg)
             </v-col>
           </v-row>
         </v-container>

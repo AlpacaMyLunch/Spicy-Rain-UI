@@ -25,7 +25,7 @@
                     <v-text-field
                       label="Latitude"
                       v-model="newLatitude"
-                      :rules="[rules.required, rules.minFour]"
+                      :rules="[rules.required, rules.minThree]"
                       dense
                       counter
                       :maxlength="latLonLen"
@@ -36,7 +36,7 @@
                     <v-text-field
                       label="Longitude"
                       v-model="newLongitude"
-                      :rules="[rules.required, rules.minFour]"
+                      :rules="[rules.required, rules.minThree]"
                       dense
                       counter
                       :maxlength="latLonLen"
@@ -100,7 +100,7 @@ export default {
       newAltitude: "0",
       rules: {
         required: (v) => !!v.toString() || "Required",
-        minFour: (v) => v.length > 2 || "Minimum 3 digits",
+        minThree: (v) => v.length > 2 || "Minimum 3 digits",
       },
     };
   },
@@ -112,6 +112,7 @@ export default {
     onlyNumbers() {
       this.newLatitude = this.newLatitude.replace(/\D/g, "");
       this.newLongitude = this.newLongitude.replace(/\D/g, "");
+
       try {
         if (this.newAltitude != "" && this.newAltitude != "-") {
           try {
@@ -121,11 +122,41 @@ export default {
           }
         }
       } catch (err) {
-        this.validateForm();
-        return;
+        console.log(err)
       }
+
+      // lat and long can't start with a 0
+      try {
+        if (this.newLatitude.toString().charAt(0) === "0") {
+          this.newLatitude = this.newLatitude.toString().slice(1)
+        } else if (this.newLatitude != "") {
+          try {
+            this.newLatitude = parseInt(this.newLatitude).toString() || "";
+          } catch (err) {
+            this.newLatitude = "";
+          }
+        }
+      } catch (err) {
+        console.log(err)
+      }
+
+      try {
+        if (this.newLongitude.toString().charAt(0) === "0") {
+          this.newLongitude = this.newLongitude.toString().slice(1)
+        } else if (this.newLongitude != "") {
+          try {
+            this.newLongitude = parseInt(this.newLongitude).toString() || "";
+          } catch (err) {
+            this.newLongitude = "";
+          }
+        }
+      } catch (err) {
+        console.log(err)
+      }
+
       this.validateForm();
     },
+
     validateForm() {
       if (
         this.newLatitude.length < 3 ||

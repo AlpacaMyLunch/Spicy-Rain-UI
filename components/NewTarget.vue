@@ -167,8 +167,37 @@ export default {
           }
         }
       } catch (err) {
-        this.validateForm();
-        return;
+        console.log(err)
+      }
+
+
+      // lat and long can't start with a 0
+      try {
+        if (this.newLatitude.toString().charAt(0) === "0") {
+          this.newLatitude = this.newLatitude.toString().slice(1)
+        } else if (this.newLatitude != "") {
+          try {
+            this.newLatitude = parseInt(this.newLatitude).toString() || "";
+          } catch (err) {
+            this.newLatitude = "";
+          }
+        }
+      } catch (err) {
+        console.log(err)
+      }
+
+      try {
+        if (this.newLongitude.toString().charAt(0) === "0") {
+          this.newLongitude = this.newLongitude.toString().slice(1)
+        } else if (this.newLongitude != "") {
+          try {
+            this.newLongitude = parseInt(this.newLongitude).toString() || "";
+          } catch (err) {
+            this.newLongitude = "";
+          }
+        }
+      } catch (err) {
+        console.log(err)
       }
       this.validateForm();
     },

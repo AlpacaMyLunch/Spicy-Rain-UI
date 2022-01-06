@@ -25,7 +25,7 @@
                     <v-text-field
                       label="Latitude"
                       v-model="newLatitude"
-                      :rules="[rules.required, rules.minThree]"
+                      :rules="[rules.required, rules.minFour]"
                       dense
                       counter
                       :maxlength="latLonLen"
@@ -36,7 +36,7 @@
                     <v-text-field
                       label="Longitude"
                       v-model="newLongitude"
-                      :rules="[rules.required, rules.minThree]"
+                      :rules="[rules.required, rules.minFour]"
                       dense
                       counter
                       :maxlength="latLonLen"
@@ -100,7 +100,7 @@ export default {
       newAltitude: "0",
       rules: {
         required: (v) => !!v.toString() || "Required",
-        minThree: (v) => v.length > 2 || "Minimum 3 digits",
+        minFour: (v) => v.length > 3 || "Minimum 4 digits",
       },
     };
   },
@@ -159,9 +159,10 @@ export default {
 
     validateForm() {
       if (
-        this.newLatitude.length < 3 ||
-        this.newLongitude.length < 3 ||
-        this.newAltitude.length === 0
+        this.newLatitude.length < 4 ||
+        this.newLongitude.length < 4 ||
+        this.newAltitude.length === 0 ||
+        this.newAltitude === '-'
       ) {
         this.formValid = false;
         return false;

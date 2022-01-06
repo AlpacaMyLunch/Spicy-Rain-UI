@@ -99,7 +99,7 @@ export default {
       formValid: false,
       rules: {
         required: (v) => !!v.toString() || "Required",
-        minFour: (v) => v.length > 2 || "Minimum 3 digits",
+        minFour: (v) => v.length > 3 || "Minimum 4 digits",
       },
     };
   },
@@ -135,8 +135,8 @@ export default {
         return false;
       }
       if (
-        this.newLatitude.length < 3 ||
-        this.newLongitude.length < 3 ||
+        this.newLatitude.length < 4 ||
+        this.newLongitude.length < 4 ||
         this.newAltitude.length === 0
       ) {
         this.formValid = false;
@@ -146,7 +146,8 @@ export default {
       if (
         this.latitude == this.newLatitude &&
         this.longitude == this.newLongitude &&
-        this.altitude == this.newAltitude
+        this.altitude == this.newAltitude ||
+        this.newAltitude === '-'
       ) {
         this.formValid = false;
         return false;

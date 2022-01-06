@@ -3,6 +3,7 @@
     <v-app-bar fixed app>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      Looking for the map? -> <v-btn text href="/altis" target="_blank" color="primary">Altis Map</v-btn>
     </v-app-bar>
     <v-main>
       <v-container>

@@ -18,3 +18,6 @@ $ npm run generate
 ```
 
 Artillery calculator for the game Arma 3
+
+
+Live:  https://spicyrain.fun

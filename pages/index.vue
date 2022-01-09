@@ -70,7 +70,7 @@ import TargetList from "@/components/TargetList";
 import Help from "@/components/Help";
 
 export default {
-  name: "FATDS",
+  name: "Spicy Rain",
 
   components: {
     LineOfSight,

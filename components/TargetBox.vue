@@ -17,6 +17,9 @@
         <div class="fe-basic">
           {{ targetData.calculated.extrapolation.elevation }}°
         </div>
+        <div class="airburst" v-if="targetData.calculated.extrapolation.airburst">
+          Possible Airburst: {{targetData.calculated.extrapolation.airburst.elevation}}°
+        </div>
       </v-card-text>
       <v-card-actions>
         <v-btn icon v-on:click="detailed = !detailed">
@@ -59,6 +62,16 @@
                   {{ targetData.calculated.equation.elevation }}°<br />
                   ~ {{ targetData.calculated.equation.flight_time }} seconds<br />
                   {{ targetData.calculated.equation.velocity }} m/s (avg)
+                </div>
+              </v-col>
+            </v-row>
+            <v-row v-if="targetData.calculated.extrapolation.airburst">
+              <v-col>
+                <div class="condensed">
+                  <b><u>Airburst</u></b><br>
+                  {{ targetData.calculated.extrapolation.airburst.elevation }}°<br />
+                  ~ {{ targetData.calculated.extrapolation.airburst.flight_time }} seconds<br />
+                  {{ targetData.calculated.extrapolation.airburst.velocity }} m/s (avg)
                 </div>
               </v-col>
             </v-row>
@@ -126,6 +139,12 @@ export default {
   color: green;
   font-size: 2.5em;
   text-align: center;
+}
+.airburst {
+  color: yellowgreen;
+  font-size: 1em;
+  text-align: center;
+  padding-top: 10px;
 }
 .rounded-card {
   border-radius: 50px;
